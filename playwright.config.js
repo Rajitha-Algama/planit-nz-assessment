@@ -8,28 +8,28 @@ export default defineConfig({
   retries: process.env.CI ? 2 : 0,
   workers: process.env.CI ? 1 : undefined,
   reporter: [
-  ['line'],
-  ['allure-playwright', {
-    resultsDir: 'allure-results',
-    detail: true,
-    suiteTitle: true,
-  }],
-],
+    ['line'],
+    ['allure-playwright', {
+      resultsDir: 'allure-results',
+      detail: true,
+      suiteTitle: true,
+    }],
+  ],
   use: {
     baseURL: 'http://jupiter.cloud.planittesting.com/',
     trace: 'on-first-retry',
-    headless: false,
+    headless: !!process.env.CI, // headless in CI, visible locally
   },
   projects: [
     {
       name: 'PlanitAssessment',
       use: {
         ...devices['Desktop Chrome'],
-        viewport: null,
+        viewport: process.env.CI ? { width: 1920, height: 1080 } : null,
         deviceScaleFactor: undefined,
         launchOptions: {
-          args: ['--start-maximized'],
-          slowMo: 1000, // 1 second delay between each action
+          args: process.env.CI ? [] : ['--start-maximized'],
+          slowMo: process.env.CI ? 0 : 1000,
         },
       },
     },
