@@ -1,0 +1,18 @@
+{
+  "baseUrl": "http://jupiter.cloud.planittesting.com/",
+  "contactForm": {
+    "forename": "jone",
+    "email": "hello@mail.com",
+    "telephone": "02112347895",
+    "message": "test message"
+  },
+  "messages": {
+    "errors": {
+      "forename": "Forename is required",
+      "email": "Email is required",
+      "message": "Message is required"
+    },
+    "sendingFeedback": "Sending Feedback",
+    "successPrefix": "Thanks {name}, we appreciate"
+  }
+}
